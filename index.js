@@ -1,12 +1,14 @@
-import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import { config } from "dotenv";
+import { productRouter } from "./src/routes/products.routes.js";
 
-dotenv.config();
+config();
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(productRouter);
 
-app.listen(3031, () => {
-  console.log("Listening on Port: 3031");
+app.listen(5050, () => {
+  console.log("Listening on Port: 5050");
 });
