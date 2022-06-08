@@ -12,3 +12,15 @@ export const getProductsCollection = async () => {
 
   return db.collection("products");
 };
+
+export const getRoutinesCollection = async () => {
+  const db = await getDb();
+
+  return db.collection("routines");
+};
+
+export const getReviewsCollection = async () => {
+  const db = await getDb();
+
+  return db.collection("reviews");
+};

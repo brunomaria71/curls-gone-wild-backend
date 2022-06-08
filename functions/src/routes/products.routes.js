@@ -19,10 +19,14 @@ productRouter.get("/products", async (req, res) => {
   res.send(products);
 });
 
-productRouter.get("/product/:name", async (req, res) => {
-  const { name } = req.params;
-  const product = await getProduct(name);
-  res.send(product);
+productRouter.get("/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await getProduct(id);
+    res.send(product);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 productRouter.patch("/product", async (req, res) => {
