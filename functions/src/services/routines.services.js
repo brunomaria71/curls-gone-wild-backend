@@ -1,26 +1,42 @@
 import { getRoutinesCollection } from "../gateway/db.js";
 
 export const createRoutine = async (routine) => {
-  const col = await getRoutinesCollection();
-  const { insertedId } = await col.insertOne(routine);
+  try {
+    const col = await getRoutinesCollection();
+    const { insertedId } = await col.insertOne(routine);
 
-  return insertedId;
+    return insertedId;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getRoutine = async (type) => {
-  const col = await getRoutinesCollection();
-  const routine = await col.findOne({ type });
+  try {
+    const col = await getRoutinesCollection();
+    const routine = await col.findOne({ type });
 
-  return routine;
+    return routine;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getRoutines = async () => {
-  const col = await getRoutinesCollection();
-  const routines = await col.find({}).toArray();
-  return routines;
+  try {
+    const col = await getRoutinesCollection();
+    const routines = await col.find({}).toArray();
+    return routines;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const updateRoutine = async (type, updateObject) => {
-  const col = await getRoutinesCollection();
-  await col.updateOne({ type }, { $set: updateObject });
+  try {
+    const col = await getRoutinesCollection();
+    await col.updateOne({ type }, { $set: updateObject });
+  } catch (error) {
+    console.error(error);
+  }
 };

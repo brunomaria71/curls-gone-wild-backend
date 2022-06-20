@@ -1,26 +1,42 @@
 import { getReviewsCollection } from "../gateway/db.js";
 
 export const createReview = async (review) => {
-  const col = await getReviewsCollection();
-  const { insertedId } = await col.insertOne(review);
+  try {
+    const col = await getReviewsCollection();
+    const { insertedId } = await col.insertOne(review);
 
-  return insertedId;
+    return insertedId;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getReview = async (name) => {
-  const col = await getReviewsCollection();
-  const review = await col.findOne({ name });
+  try {
+    const col = await getReviewsCollection();
+    const review = await col.findOne({ name });
 
-  return review;
+    return review;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getReviews = async () => {
-  const col = await getReviewsCollection();
-  const reviews = await col.find({}).toArray();
-  return reviews;
+  try {
+    const col = await getReviewsCollection();
+    const reviews = await col.find({}).toArray();
+    return reviews;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const updateReview = async (name, updateObject) => {
-  const col = await getReviewsCollection();
-  await col.updateOne({ name }, { $set: updateObject });
+  try {
+    const col = await getReviewsCollection();
+    await col.updateOne({ name }, { $set: updateObject });
+  } catch (error) {
+    console.error(error);
+  }
 };

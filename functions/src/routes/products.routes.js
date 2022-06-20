@@ -15,8 +15,12 @@ productRouter.post("/product", async (req, res) => {
 });
 
 productRouter.get("/products", async (req, res) => {
-  const products = await getProducts();
-  res.send(products);
+  try {
+    const products = await getProducts();
+    res.send(products);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 productRouter.get("/products/:id", async (req, res) => {
@@ -30,7 +34,11 @@ productRouter.get("/products/:id", async (req, res) => {
 });
 
 productRouter.patch("/product", async (req, res) => {
-  const product = req.body;
-  const newProduct = await updateProduct(req.body.name, product);
-  res.send(req.body);
+  try {
+    const product = req.body;
+    const newProduct = await updateProduct(req.body.name, product);
+    res.send(req.body);
+  } catch (error) {
+    console.error(error);
+  }
 });
