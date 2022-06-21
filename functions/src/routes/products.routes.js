@@ -1,18 +1,7 @@
 import { Router } from "express";
-import {
-  createProduct,
-  getProduct,
-  getProducts,
-  updateProduct,
-} from "../services/products.services.js";
+import { getProduct, getProducts } from "../services/products.services.js";
 
 export const productRouter = Router();
-
-productRouter.post("/product", async (req, res) => {
-  const product = req.body;
-  const id = await createProduct(product);
-  res.send(id.toString());
-});
 
 productRouter.get("/products", async (req, res) => {
   try {
@@ -33,12 +22,18 @@ productRouter.get("/products/:id", async (req, res) => {
   }
 });
 
-productRouter.patch("/product", async (req, res) => {
-  try {
-    const product = req.body;
-    const newProduct = await updateProduct(req.body.name, product);
-    res.send(req.body);
-  } catch (error) {
-    console.error(error);
-  }
-});
+// productRouter.post("/product", async (req, res) => {
+//   const product = req.body;
+//   const id = await createProduct(product);
+//   res.send(id.toString());
+// });
+
+// productRouter.patch("/product", async (req, res) => {
+//   try {
+//     const product = req.body;
+//     const newProduct = await updateProduct(req.body.name, product);
+//     res.send(req.body);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
